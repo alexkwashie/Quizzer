@@ -20,8 +20,9 @@
         <div class="container">
             <h2>You are Done!</h2>
             <h4>Congats!! You finish the Test</h4>
-            <p>Final Score: <?php echo $_SESSION['score']; session_destroy()?></p>
-            <a href= "question.php?n=1" class="start">Take Test Again</a>
+            <p>Final Score: <?php echo $_SESSION['score']; 
+            session_destroy()?></p>
+            <a href= "question.php?n=1" class="start">Take Test Again...</a>
         </div>
     </main>
 
