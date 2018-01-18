@@ -1,0 +1,93 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    line-height: 1.6em;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+a.start {
+    color: rgb(109, 109, 109);
+    display: inline-block;
+    border: 1.5px dotted gray;
+    padding: 5px 10px;
+    background: rgb(179, 178, 178);
+}
+
+.current {
+    margin-top: 10px;
+    color: rgb(109, 109, 109);
+    border: 1.5px dotted gray;
+    padding: 5px 10px;
+    background: rgb(179, 178, 178);
+}
+
+.container {
+    width: 60%;
+    margin: 0 auto;
+    overflow: auto;
+}
+
+header {
+    border-bottom: 3px solid rgb(203, 203, 203);
+}
+
+main {
+    margin-top: 10px;
+}
+
+footer {
+    text-align: center;
+    border-top: 3px solid rgb(181, 181, 181);
+    padding-top: 5px;
+    margin-top: 10px;
+}
+
+label {
+    display: inline-block;
+    /*it puts every element on the same line*/
+    width: 180px;
+    /*Seperates them eg. text and input ares*/
+}
+
+input[type=submit] {
+    border-radius: 5px;
+    padding: 10px;
+    color: white;
+    background: rgb(91, 180, 228);
+}
+
+input[type=text] {
+    width: 80%;
+    padding: 7px;
+    border-radius: 5px;
+    border: 1px solid rgb(186, 186, 186);
+    margin: 0 4px;
+}
+
+input[type=number] {
+    width: 40px;
+    padding: 7px;
+    border-radius: 5px;
+    border: 1px solid rgb(186, 186, 186);
+    margin: 0 4px;
+}
+
+@media (max-width:800px) {
+    .container {
+        width: 90%;
+    }
+    input[type=text] {
+        width: 90%;
+        padding: 7px;
+        border-radius: 5px;
+        border: 1px solid rgb(186, 186, 186);
+        margin: 0 4px;
+    }
+}
