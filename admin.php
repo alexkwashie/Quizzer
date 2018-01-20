@@ -4,6 +4,7 @@ If (isset($_POST['submit'])){
     //Get Post variables
     $question_number = $_POST['question_no'];
     $question_text = $_POST['question_text'];
+    $correct_choice = $_POST['correct_choice'];
     
     //put choices into an array
     $options= array();
@@ -11,7 +12,6 @@ If (isset($_POST['submit'])){
     $options[2] = $_POST['choice2'];
     $options[3] = $_POST['choice3'];
     $options[4] = $_POST['choice4'];
-    $options[5] = $_POST['choice5'];
 
 
     $query = "INSERT INTO `quiz`(question_number, text) VALUES('$question_number', '$question_text')";
@@ -23,7 +23,7 @@ If (isset($_POST['submit'])){
     if($insert_row){
         foreach($options as $options => $value){
             if($value !=''){
-                if($correct_choice = $options){
+                if($correct_choice == $options){
                     $is_correct = 1;
                 }else{
                     $is_correct = 0;
@@ -47,10 +47,11 @@ If (isset($_POST['submit'])){
     }
 
     $msg = 'Question has been added';
-
-
 }
-
+    $query = "SELECT * FROM `quiz`";
+    $results = $mysqli->query($query) or die($mysqli->error.__LINE__);
+    $total = $results->num_rows;
+    $next = $total+1 ;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -72,7 +73,7 @@ If (isset($_POST['submit'])){
     <main>
     <?php 
             if(isset($msg)){
-                echo $msg; 
+                echo '<p>'.$msg.'</p>'; 
             }
     ?>
         <div class="container">
@@ -80,7 +81,7 @@ If (isset($_POST['submit'])){
             <form method="post" action="admin.php">
                 <p>
                     <label>Question Number</label>
-                    <input type="number" name="question_no">
+                    <input type="number" value="<?php echo $next; ?>" name="question_no">
                 </p>
 
                 <p>

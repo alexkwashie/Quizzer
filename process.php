@@ -48,7 +48,6 @@ if($_POST){
         exit();
     } else {
         header("Location: question.php?n=".$next);
-        
     }
 }
 ?>
