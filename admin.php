@@ -14,10 +14,39 @@ If (isset($_POST['submit'])){
     $options[5] = $_POST['choice5'];
 
 
-    $query = "INSERT INTO `quiz`(question_number, text) VALUES($question_number, $question_text)";
+    $query = "INSERT INTO `quiz`(question_number, text) VALUES('$question_number', '$question_text')";
 
     //Run Query
     $insert_row = $mysqli -> query($query) or die($mysqli->error.__FILE__);
+
+    //Validate Row
+    if($insert_row){
+        foreach($options as $options => $value){
+            if($value !=''){
+                if($correct_choice = $options){
+                    $is_correct = 1;
+                }else{
+                    $is_correct = 0;
+                }
+
+                //choice query
+                $query = "INSERT INTO `choices`(question_number, is_correct, text) 
+                VALUES('$question_number', '$is_correct', '$value')";
+
+                //Run Query
+                $insert_row = $mysqli -> query($query) or die($mysqli->error.__FILE__); 
+
+               //Validate Row
+               if($insert_row) {
+                   continue;
+               }else{
+                   die('Error: ('.$mysqli->errno. ') '.$mysqli->error);
+               }
+            }
+        }
+    }
+
+    $msg = 'Question has been added';
 
 
 }
@@ -41,6 +70,11 @@ If (isset($_POST['submit'])){
         </div>
     </header>
     <main>
+    <?php 
+            if(isset($msg)){
+                echo $msg; 
+            }
+    ?>
         <div class="container">
             <h2>Add a Question:</h2>
             <form method="post" action="admin.php">
