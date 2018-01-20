@@ -1,3 +1,28 @@
+<?php include 'database.php';?>
+<?php 
+If (isset($_POST['submit'])){
+    //Get Post variables
+    $question_number = $_POST['question_no'];
+    $question_text = $_POST['question_text'];
+    
+    //put choices into an array
+    $options= array();
+    $options[1] = $_POST['choice1'];
+    $options[2] = $_POST['choice2'];
+    $options[3] = $_POST['choice3'];
+    $options[4] = $_POST['choice4'];
+    $options[5] = $_POST['choice5'];
+
+
+    $query = "INSERT INTO `quiz`(question_number, text) VALUES($question_number, $question_text)";
+
+    //Run Query
+    $insert_row = $mysqli -> query($query) or die($mysqli->error.__FILE__);
+
+
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,7 +51,7 @@
 
                 <p>
                     <label>Question text:</label>
-                    <input type="text" name="question_no">
+                    <input type="text" name="question_text">
                 </p>
 
                 <p>
@@ -55,7 +80,7 @@
                 </p>
 
                 <input type="submit" name="submit" value="submit">
-                
+
             </form>
         </div>
     </main>
